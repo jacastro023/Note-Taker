@@ -16,11 +16,10 @@ router.post("/notes", (req, res) => {
 });
 
 router.delete("/notes/:id", function (req, res) {
-    console.log(req.params.id);
 
     store
         .removeNote(req.params.id)
-        .then(notes => res.json(notes))
+        .then(notes => res.json(notes.filter(notes => notes.req.params.id !== parseInt(req.params.id))))
         .catch(err => res.status(500).json(err));
 })
 
